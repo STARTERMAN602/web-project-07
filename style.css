@@ -60,7 +60,13 @@ body {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  /* Ganti atau tambahkan logo gambar jika perlu */
+}
+
+.brand-logo img {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  display: block;
 }
 
 .brand-title {

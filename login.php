@@ -12,7 +12,7 @@
     <a href="#" class="brand-header">
       <div class="brand-logo">
         <!-- SVG Ikon Placeholder (bisa diganti <img> logo webmu) -->
-        <img src="assets/app_icon/app-logo.png">
+        <img src="assets/app-icon/appLogo.png">
       </div>
       <span class="brand-title">HealthyCare</span>
     </a>
