@@ -1,3 +1,15 @@
+<?php
+session_start();
+if(isset($_SESSION["status"])) {
+  if($_SESSION["status"] == "login") {
+    header("location: indexAdmin.php");
+  }
+}
+if(isset($_GET["status"])) {
+  $status = $_GET["status"];
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +24,7 @@
     <a href="#" class="brand-header">
       <div class="brand-logo">
         <!-- SVG Ikon Placeholder (bisa diganti <img> logo webmu) -->
-        <img src="assets/app-icon/appLogo.svg">
+        <img src="assets/app-icon/appLogo.png">
       </div>
       <span class="brand-title">HealthyCare</span>
     </a>
@@ -25,7 +37,21 @@
         <div class="card-body">
           <h1 class="card-title">Sign in to your account</h1>
 
-          <form action="#" method="POST">
+          <?php
+          if(isset($status)) {
+            if($status == "wrong") {
+              ?>
+              <span style="color: red;">username, email, or password wrong</span>
+              <?php
+            } else {
+              ?>
+              <span style="color: red;">You need to login first</span>
+              <?php
+            }
+          }
+          ?>
+
+          <form action="cekLogin.php" method="POST">
             <div class="form-group">
               <label for="username">Username or email</label>
               <input type="text" id="username" name="username" class="form-control" required autofocus>
@@ -43,7 +69,7 @@
 
         <div class="card-footer">
           <span>New user?</span>
-          <a href="register.html" class="link-accent">Register</a>
+          <a href="regist.php" class="link-accent">Register</a>
         </div>
       </div>
     </div>

@@ -1,7 +1,12 @@
 <?php
+session_start();
+if(!isset($_SESSION["status"])) {
+    header("location: login.php?status=not_logedin");
+}
+$userID = $_SESSION["userID"];
 include ("koneksi.php");
 $query = mysqli_query($connect, "select * from meds");
-
+$user = mysqli_query($connect, "select * from accounts where ID = $userID") ->fetch_assoc();
 ?>
 
 <!DOCTYPE html>
@@ -12,6 +17,8 @@ $query = mysqli_query($connect, "select * from meds");
     <title>index admin</title>
 </head>
 <body>
+    halo <?=$user["username"]?> <br>
+    <button><a style="text-decoration: none; color: inherit;" href="logout.php">Logout</a></button>
     <button> <a href="tambah.php">Tambah Obat </a></button> <br>
     <table border="1" id="medsList">
         <tr>

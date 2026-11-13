@@ -1,3 +1,9 @@
+<?php
+if(isset($_GET["status"])) {
+    $status = $_GET["status"];
+}
+?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -31,8 +37,21 @@
           </div>
 
           <h1 class="card-title">Register</h1>
+          <?php
+            if(isset($status)) {
+                if($status == "email_or_usn_exist") {
+                    ?>
+                    <span style="color: red;">This email or username alredy exist</span>
+                    <?php
+                }else{
+                    ?>
+                    <span style="color: red;">Confirmed password wrong</span>
+                    <?php
+                }
+            }
+          ?>
 
-          <form action="#" method="POST">
+          <form action="cekRegist.php" method="POST">
             <div class="form-group">
               <label for="reg-username">Username <span class="required-star">*</span></label>
               <input type="text" id="reg-username" name="username" class="form-control" required autofocus>
@@ -54,7 +73,7 @@
             </div>
 
             <div class="back-link-wrap">
-              <a href="login.html" class="link-accent">&laquo; Back to Login</a>
+              <a href="login.php" class="link-accent">&laquo; Back to Login</a>
             </div>
 
             <button type="submit" class="btn-primary">Register</button>
