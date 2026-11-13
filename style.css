@@ -1,0 +1,225 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg-page: #121213;
+  --bg-card: #27292e;
+  --bg-footer: #32353b;
+  --bg-input: #3d4048;
+  --bg-input-focus: #454952;
+  --accent: #ff6740;
+  --accent-hover: #e8552e;
+  --text-main: #ffffff;
+  --text-label: #e4e4e7;
+  --text-muted: #a1a1aa;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 16px;
+  overflow-x: hidden;
+}
+
+.auth-wrapper {
+  width: 100%;
+  max-width: 460px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+/* Header Logo */
+.brand-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 32px;
+  text-decoration: none;
+  color: var(--text-main);
+  z-index: 2;
+}
+
+.brand-logo {
+  width: 42px;
+  height: 42px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  /* Ganti atau tambahkan logo gambar jika perlu */
+}
+
+.brand-title {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+
+/* Container Card + Karakter Background */
+.card-area {
+  width: 100%;
+  position: relative;
+}
+
+/* Gambar Karakter di Sisi Kiri (Opsional) */
+.bg-illustration {
+  position: absolute;
+  right: calc(100% - 45px);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 380px;
+  height: 480px;
+  /* Ganti 'character.png' dengan gambar ilustrasi PNG transparan milikmu */
+  background-image: url('character.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center right;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Card Utama */
+.auth-card {
+  position: relative;
+  z-index: 1;
+  background-color: var(--bg-card);
+  border-top: 3px solid var(--accent);
+  border-radius: 3px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+  overflow: hidden;
+}
+
+.card-body {
+  padding: 32px 36px 28px;
+}
+
+.required-note {
+  text-align: right;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.required-star {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.card-title {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 26px;
+  color: var(--text-main);
+}
+
+/* Form Elements */
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-label);
+  margin-bottom: 7px;
+}
+
+.form-control {
+  width: 100%;
+  height: 40px;
+  padding: 0 12px;
+  background-color: var(--bg-input);
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: var(--text-main);
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.form-control:focus {
+  background-color: var(--bg-input-focus);
+  border-color: var(--accent);
+}
+
+/* Links */
+.link-accent {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 13px;
+  transition: opacity 0.2s;
+}
+
+.link-accent:hover {
+  text-decoration: underline;
+  opacity: 0.9;
+}
+
+/* Button */
+.btn-primary {
+  width: 100%;
+  height: 40px;
+  background-color: var(--accent);
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-hover);
+}
+
+/* Card Footer (Khusus Login Page) */
+.card-footer {
+  background-color: var(--bg-footer);
+  padding: 18px 36px;
+  text-align: center;
+  font-size: 13.5px;
+  color: var(--text-label);
+}
+
+.card-footer a {
+  margin-left: 6px;
+  font-weight: 500;
+}
+
+.back-link-wrap {
+  margin-bottom: 16px;
+}
+
+/* Responsif untuk layar HP */
+@media (max-width: 768px) {
+  .bg-illustration {
+    display: none;
+  }
+
+  .card-body {
+    padding: 26px 22px;
+  }
+
+  .card-footer {
+    padding: 16px 22px;
+  }
+}
