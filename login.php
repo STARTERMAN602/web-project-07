@@ -12,7 +12,7 @@
     <a href="#" class="brand-header">
       <div class="brand-logo">
         <!-- SVG Ikon Placeholder (bisa diganti <img> logo webmu) -->
-        <img
+        <img src="precision-medicine.png">
       </div>
       <span class="brand-title">HealthyCare</span>
     </a>
