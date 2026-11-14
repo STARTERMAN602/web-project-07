@@ -12,12 +12,9 @@
     <!-- Logo & Nama Brand -->
     <a href="#" class="brand-header">
       <div class="brand-logo">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
-          <circle cx="12" cy="12" r="9" fill="#ff6740"/>
-          <path d="M8 14C9.5 11.5 14.5 11.5 16 14" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
-        </svg>
+        <img src="assets/app-icon/appLogo.png">
       </div>
-      <span class="brand-title">MangaDex</span>
+      <span class="brand-title">HealthyCare</span>
     </a>
 
     <div class="card-area">
