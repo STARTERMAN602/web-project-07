@@ -12,7 +12,7 @@
     <!-- Logo & Nama Brand -->
     <a href="#" class="brand-header">
       <div class="brand-logo">
-        <img src="assets/app-icon/appLogo.png">
+        <img src="assets/app-icon/appLogo.png" alt="app logo">
       </div>
       <span class="brand-title">HealthyCare</span>
     </a>

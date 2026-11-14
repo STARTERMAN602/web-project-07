@@ -258,3 +258,165 @@ select.form-control option {
     padding: 16px 22px;
   }
 }
+
+/* === TAMBAHAN UNTUK LOGOUT, NOUSER, & USER === */
+
+/* Agar tag <a> yang memakai class tombol tampil rapi seperti <button> */
+a.btn-primary,
+a.btn-outline,
+a.btn-danger-outline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.btn-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btn-outline {
+  width: 100%;
+  height: 40px;
+  background-color: transparent;
+  color: var(--text-main);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.btn-outline:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.btn-danger-outline {
+  width: 100%;
+  height: 40px;
+  background-color: rgba(244, 63, 94, 0.1);
+  color: #fda4af;
+  border: 1px solid rgba(244, 63, 94, 0.35);
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.btn-danger-outline:hover {
+  background-color: rgba(244, 63, 94, 0.22);
+  color: #ffffff;
+}
+
+/* Varian Card Error / Akses Ditolak (untuk nouser.php) */
+.auth-card.card-danger {
+  border-top: 3px solid #f43f5e;
+}
+
+/* Ikon Lingkaran Status (Logout & NoUser) */
+.status-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 18px;
+}
+
+.status-icon.success {
+  background-color: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(52, 211, 153, 0.35);
+  color: #34d399;
+}
+
+.status-icon.danger {
+  background-color: rgba(244, 63, 94, 0.15);
+  border: 1px solid rgba(251, 113, 133, 0.35);
+  color: #fb7185;
+}
+
+.card-desc {
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-label);
+  margin-top: -12px;
+  margin-bottom: 26px;
+}
+
+/* Tampilan Profil (untuk user.php) */
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 22px;
+}
+
+.profile-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #059669, #14b8a6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 14px rgba(5, 150, 105, 0.35);
+}
+
+.profile-name {
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 6px;
+}
+
+.role-badge {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background-color: rgba(16, 185, 129, 0.18);
+  color: #34d399;
+  border: 1px solid rgba(52, 211, 153, 0.3);
+}
+
+.profile-info {
+  background-color: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 6px;
+  padding: 6px 16px;
+  margin-bottom: 24px;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  font-size: 13.5px;
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.info-label {
+  color: var(--text-muted);
+}
+
+.info-value {
+  color: var(--text-main);
+  font-weight: 600;
+}
