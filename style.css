@@ -373,6 +373,14 @@ a.btn-danger-outline {
   box-shadow: 0 4px 14px rgba(5, 150, 105, 0.35);
 }
 
+.profile-avatar img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  display: block;
+  filter: brightness(0) invert(1);
+}
+
 .profile-name {
   font-family: 'Poppins', 'Segoe UI', sans-serif;
   font-size: 19px;
