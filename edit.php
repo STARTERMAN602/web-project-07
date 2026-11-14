@@ -1,52 +1,131 @@
 <?php
 include "koneksi.php";
-$id = $_GET["id"];
+$id = isset($_GET["id"]) ? (int) $_GET["id"] : 0;
 
-$query = mysqli_query($connect, "Select * From meds where ID = $id");
+$query = mysqli_query($connect, "SELECT * FROM meds WHERE ID = $id");
+$data = $query ? $query->fetch_assoc() : null;
+
+if (!$data) {
+    header("Location: indexAdmin.php");
+    exit;
+}
+
+$imgPath = (!empty($data["Image"]) && file_exists("assets/product-image/" . $data["Image"]))
+    ? "assets/product-image/" . htmlspecialchars($data["Image"])
+    : "assets/app-icon/appLogo.png";
 ?>
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Obat - HealthyCare Admin</title>
+  <link rel="stylesheet" href="dashboard.css">
 </head>
 <body>
-    <?php
-    while($data = $query->fetch_assoc()){
-    ?>
-    <form action="editData.php" method="POST">
-        <input type="number" name="id" value="<?=$data["ID"]?>" hidden>
-        Nama:
-        <input type="text" name="nama" value="<?=$data["Name"]?>">
-        <br>
-        Kategori: <br>
-        <div class="pilihKategori">
-            <input type="radio" name="kategori" value="Paracetamol" <?=($data['Category'] == 'Paracetamol') ? 'checked' : '' ?>> Paracetamol 
-            <input type="radio" name="kategori" value="Ibuprofen" <?=($data['Category'] == 'Ibuprofen') ? 'checked' : '' ?>> Ibuprofen 
-            <input type="radio" name="kategori" value="Vitamin" <?=($data['Category'] == 'Vitamin') ? 'checked' : '' ?>> Vitamin
-            <input type="radio" name="kategori" value="Obat Maag" <?=($data['Category'] == 'Obat Maag') ? 'checked' : '' ?>> Obat Maag
-        </div>
-        <br>
-        Tipe: <br>
-        <div class="pilihTipe">
-            <input type="radio" name="tipe" value="Tablet" <?=($data['Type'] == 'Tablet') ? 'checked' : '' ?>> Tablet
-            <input type="radio" name="tipe" value="Kapsul" <?=($data['Type'] == 'Kapsul') ? 'checked' : '' ?>> Kapsul
-            <input type="radio" name="tipe" value="Sirup" <?=($data['Type'] == 'Sirup') ? 'checked' : '' ?>> Sirup
-        </div>
-        <br>
-        Stok:
-        <input type="number" name="stok" value="<?=$data["Stock"]?>">
-        <br>
-        Harga:
-        <input type="number" name="harga" value="<?=$data["Price"]?>">
-        <br>
 
-        <button type="submit"> Edit Obat</button>
-    </form>
-    <?php
-    }
-    ?>
+  <div class="app-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <a href="indexAdmin.php" class="sidebar-brand">
+        <div class="brand-icon">
+          <img src="assets/app-icon/appLogo.png" alt="Logo HealthyCare">
+        </div>
+        <span class="brand-name">HealthyCare</span>
+      </a>
+
+      <nav class="sidebar-nav">
+        <div class="nav-label">Manajemen</div>
+        <a href="indexAdmin.php" class="nav-link active">Kelola Data Obat</a>
+        <a href="admin-histori.php" class="nav-link">Histori Pembelian</a>
+
+        <div class="nav-label">Akun</div>
+        <a href="user.php" class="nav-link">Profil Admin</a>
+        <a href="logout.php" class="nav-link logout">Logout</a>
+      </nav>
+    </aside>
+
+    <!-- Konten Utama -->
+    <div class="main-content">
+      <header class="topbar">
+        <a href="indexAdmin.php" class="btn btn-outline btn-sm">&larr; Kembali ke Daftar Obat</a>
+        <a href="user.php" class="user-pill">
+          <div class="user-avatar-sm">A</div>
+          <span>Admin Apotek</span>
+        </a>
+      </header>
+
+      <main class="page-body">
+        <section style="max-width: 620px; width: 100%;">
+          <div class="section-header">
+            <div>
+              <h1 class="section-title">Edit Data Obat</h1>
+              <p class="section-subtitle">Perbarui informasi, stok, atau gambar obat #<?= htmlspecialchars($data["ID"]) ?>.</p>
+            </div>
+          </div>
+
+          <div class="table-card" style="padding: 24px;">
+            <form action="editData.php" method="POST" enctype="multipart/form-data">
+              <input type="hidden" name="id" value="<?= htmlspecialchars($data["ID"]) ?>">
+              <input type="hidden" name="old_image" value="<?= htmlspecialchars($data["Image"] ?? '') ?>">
+
+              <div class="form-group">
+                <label for="nama">Nama Obat</label>
+                <input type="text" id="nama" name="nama" class="form-control" value="<?= htmlspecialchars($data["Name"]) ?>" required>
+              </div>
+
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="kategori">Kategori</label>
+                  <select id="kategori" name="kategori" class="form-control" required style="background-color: #192b26; color: #fff;">
+                    <option value="Paracetamol" <?= ($data['Category'] == 'Paracetamol') ? 'selected' : '' ?>>Paracetamol</option>
+                    <option value="Ibuprofen" <?= ($data['Category'] == 'Ibuprofen') ? 'selected' : '' ?>>Ibuprofen</option>
+                    <option value="Vitamin" <?= ($data['Category'] == 'Vitamin') ? 'selected' : '' ?>>Vitamin</option>
+                    <option value="Obat Maag" <?= ($data['Category'] == 'Obat Maag') ? 'selected' : '' ?>>Obat Maag</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="tipe">Tipe</label>
+                  <select id="tipe" name="tipe" class="form-control" required style="background-color: #192b26; color: #fff;">
+                    <option value="Tablet" <?= ($data['Type'] == 'Tablet') ? 'selected' : '' ?>>Tablet</option>
+                    <option value="Kapsul" <?= ($data['Type'] == 'Kapsul') ? 'selected' : '' ?>>Kapsul</option>
+                    <option value="Sirup" <?= ($data['Type'] == 'Sirup') ? 'selected' : '' ?>>Sirup</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="stok">Stok</label>
+                  <input type="number" id="stok" name="stok" class="form-control" value="<?= htmlspecialchars($data["Stock"]) ?>" min="0" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="harga">Harga (Rp)</label>
+                  <input type="number" id="harga" name="harga" class="form-control" value="<?= htmlspecialchars($data["Price"]) ?>" min="0" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Gambar Obat Saat Ini</label>
+                <div style="display: flex; align-items: center; gap: 14px; margin-top: 4px;">
+                  <img src="<?= $imgPath ?>" alt="Preview" style="width: 64px; height: 64px; border-radius: 8px; background: #fff; object-fit: contain; padding: 4px;">
+                  <div style="flex: 1;">
+                    <input type="file" name="image" class="form-control" accept=".jpg,.jpeg,.png,.webp" style="padding-top: 7px;">
+                    <small style="color: #94a3b8; font-size: 12px;">Kosongkan jika tidak ingin mengganti gambar.</small>
+                  </div>
+                </div>
+              </div>
+
+              <div style="display: flex; gap: 10px; margin-top: 20px;">
+                <a href="indexAdmin.php" class="btn btn-outline">Batal</a>
+                <button type="submit" class="btn btn-emerald" style="flex: 1;">Simpan Perubahan</button>
+              </div>
+            </form>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
 </body>
 </html>

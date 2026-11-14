@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invoice Pembelian - HealthyCare</title>
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+  <div class="receipt-wrapper">
+    <div class="receipt-paper">
+      <div class="receipt-head">
+        <div class="receipt-brand">
+          <img src="assets/app-icon/appLogo.png" alt="HealthyCare">
+          <span>HealthyCare</span>
+        </div>
+        <div style="text-align: right;">
+          <strong style="font-size: 16px;">Nota Pesanan</strong>
+          <div style="font-size: 12px; color: #64748b;">Apotek Digital Terpercaya</div>
+        </div>
+      </div>
+
+      <div class="receipt-meta-grid">
+        <div class="receipt-meta-item">
+          <span>Nama Pembeli</span>
+          <strong>Arnold Adra</strong>
+        </div>
+        <div class="receipt-meta-item">
+          <span>No. Pesanan</span>
+          <strong>HC-20261114-001</strong>
+        </div>
+        <div class="receipt-meta-item">
+          <span>Tanggal Transaksi</span>
+          <strong>14 Nov 2026, 14:20 WIB</strong>
+        </div>
+        <div class="receipt-meta-item">
+          <span>Status Pembayaran</span>
+          <strong style="color: #059669;">Lunas</strong>
+        </div>
+      </div>
+
+      <table class="receipt-table">
+        <thead>
+          <tr>
+            <th>No.</th>
+            <th>Obat &amp; Detail</th>
+            <th>Harga Satuan</th>
+            <th>Jumlah</th>
+            <th class="text-right">Subtotal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>
+              <div class="receipt-item-cell">
+                <img src="assets/product-image/promag.png" alt="Promag" class="receipt-item-thumb">
+                <div>
+                  <strong>Promag</strong>
+                  <div style="font-size: 12px; color: #64748b;">Obat Maag &bull; Tablet</div>
+                </div>
+              </div>
+            </td>
+            <td>Rp 5.000</td>
+            <td>2</td>
+            <td class="text-right"><strong>Rp 10.000</strong></td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>
+              <div class="receipt-item-cell">
+                <img src="assets/product-image/paracetamol.png" alt="Paracetamol" class="receipt-item-thumb">
+                <div>
+                  <strong>Paracetamol 500mg</strong>
+                  <div style="font-size: 12px; color: #64748b;">Pereda Nyeri &bull; Kaplet</div>
+                </div>
+              </div>
+            </td>
+            <td>Rp 8.000</td>
+            <td>1</td>
+            <td class="text-right"><strong>Rp 8.000</strong></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="receipt-totals">
+        <div class="receipt-total-row">
+          <span>Subtotal Obat</span>
+          <span>Rp 18.000</span>
+        </div>
+        <div class="receipt-total-row">
+          <span>Biaya Layanan</span>
+          <span>Rp 1.000</span>
+        </div>
+        <div class="receipt-total-row grand">
+          <span>Total Pembayaran</span>
+          <span style="color: #059669;">Rp 19.000</span>
+        </div>
+      </div>
+
+      <div class="receipt-actions">
+        <a href="customer.html" class="btn btn-outline" style="color: #334155; border-color: #cbd5e1;">
+          &laquo; Kembali
+        </a>
+        <a href="customer.html#detail-obat-1" class="btn btn-emerald">
+          Beli Lagi
+        </a>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

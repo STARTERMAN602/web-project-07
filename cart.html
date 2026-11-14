@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Keranjang Saya - HealthyCare</title>
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+  <div class="page-container">
+    <div class="page-top-bar">
+      <a href="customer.html" class="back-link">&larr; Keranjang Saya (2)</a>
+      <a href="customer.html" class="btn btn-outline btn-sm">+ Tambah Obat Lain</a>
+    </div>
+
+    <form action="transaksi-berhasil.html" method="POST">
+      <div class="cart-list">
+        <!-- Item 1 -->
+        <div class="cart-item">
+          <input type="checkbox" class="cart-check" checked>
+          <img src="assets/product-image/promag.png" alt="Promag" class="cart-thumb">
+
+          <div class="cart-info">
+            <div class="cart-title">Promag</div>
+            <span class="cart-variant">Obat Maag &bull; Tablet</span>
+
+            <div class="cart-price-row">
+              <span class="cart-price">Rp 5.000</span>
+              <div class="cart-actions">
+                <div class="qty-control">
+                  <button type="button" class="qty-btn">-</button>
+                  <input type="number" class="qty-input" value="2" min="1">
+                  <button type="button" class="qty-btn">+</button>
+                </div>
+                <a href="#" class="btn btn-danger btn-sm">Hapus</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="cart-item">
+          <input type="checkbox" class="cart-check" checked>
+          <img src="assets/product-image/paracetamol.png" alt="Paracetamol" class="cart-thumb">
+
+          <div class="cart-info">
+            <div class="cart-title">Paracetamol 500mg</div>
+            <span class="cart-variant">Pereda Nyeri &bull; Kaplet</span>
+
+            <div class="cart-price-row">
+              <span class="cart-price">Rp 8.000</span>
+              <div class="cart-actions">
+                <div class="qty-control">
+                  <button type="button" class="qty-btn">-</button>
+                  <input type="number" class="qty-input" value="1" min="1">
+                  <button type="button" class="qty-btn">+</button>
+                </div>
+                <a href="#" class="btn btn-danger btn-sm">Hapus</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bar Checkout Bawah -->
+      <div class="cart-summary-bar">
+        <div class="cart-summary-inner">
+          <label class="summary-left" style="cursor: pointer;">
+            <input type="checkbox" class="cart-check" checked>
+            <span>Semua</span>
+          </label>
+
+          <div class="summary-right">
+            <div class="total-box">
+              <div class="total-label">Total Pembayaran</div>
+              <div class="total-amount">Rp 18.000</div>
+            </div>
+            <button type="submit" class="btn btn-emerald" style="height: 42px; padding: 0 22px;">
+              Checkout (2)
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+</body>
+</html>
