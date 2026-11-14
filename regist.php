@@ -50,6 +50,15 @@
               <input type="email" id="reg-email" name="email" class="form-control" required>
             </div>
 
+            <div class="form-group">
+              <label for="reg-role">Role <span class="required-star">*</span></label>
+              <select id="reg-role" name="role" class="form-control" required>
+                <option value="" disabled selected>-- Pilih Role --</option>
+                <option value="Customer">Customer</option>
+                <option value="Admin">Admin</option>
+              </select>
+            </div>
+
             <div class="back-link-wrap">
               <a href="login.html" class="link-accent">&laquo; Back to Login</a>
             </div>
