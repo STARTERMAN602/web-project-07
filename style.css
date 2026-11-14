@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 :root {
-  --bg-page: #0b1120;
-  --bg-card: rgba(17, 25, 40, 0.82);   
-  --bg-footer: rgba(30, 41, 59, 0.75);
-  --bg-input: rgba(51, 65, 85, 0.65);
-  --bg-input-focus: rgba(51, 65, 85, 0.9);
-  --accent: #06b6d4;                   
-  --accent-hover: #0891b2;
+  --bg-page: #0a1412;
+  --bg-card: rgba(16, 28, 25, 0.78);
+  --bg-footer: rgba(24, 42, 37, 0.72);
+  --bg-input: rgba(45, 68, 62, 0.65);
+  --bg-input-focus: rgba(45, 68, 62, 0.9);
+  --accent: #059669;          /* Hijau Emerald (teks putih di tombol sangat tajam) */
+  --accent-hover: #047857;
   --text-main: #ffffff;
   --text-label: #e2e8f0;
   --text-muted: #94a3b8;
@@ -170,7 +170,7 @@ body {
 
 /* Links */
 .link-accent {
-  color: var(--accent);
+  color: #34d399;
   text-decoration: none;
   font-size: 13px;
   transition: opacity 0.2s;
