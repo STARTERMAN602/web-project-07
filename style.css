@@ -19,9 +19,12 @@
   padding: 0;
 }
 
+html {
+  background-color: var(--bg-page);
+}
+
 body {
   font-family: 'Nunito Sans', 'Segoe UI', sans-serif;
-  background-color: var(--bg-page);
   color: var(--text-main);
   min-height: 100vh;
   display: flex;
@@ -31,6 +34,19 @@ body {
   overflow-x: hidden;
 }
 
+body::before {
+  content: "";
+  position: fixed;
+  inset: -20px;
+  z-index: 0;
+  background-image:
+    linear-gradient(rgba(8, 20, 17, 0.78), rgba(8, 20, 17, 0.85)),
+    url('assets/background/appBg.jpg'); /* Sesuaikan dengan lokasi & nama file fotomu */
+  background-size: cover;
+  background-position: center;
+  filter: blur(8px);
+}
+
 .auth-wrapper {
   width: 100%;
   max-width: 460px;
@@ -38,6 +54,7 @@ body {
   flex-direction: column;
   align-items: center;
   position: relative;
+  z-index: 1;
 }
 
 /* Header Logo */
