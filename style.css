@@ -185,6 +185,15 @@ body::before {
   border-color: var(--accent);
 }
 
+select.form-control {
+  cursor: pointer;
+}
+
+select.form-control option {
+  background-color: #16221f;
+  color: #ffffff;
+}
+
 /* Links */
 .link-accent {
   color: #34d399;
