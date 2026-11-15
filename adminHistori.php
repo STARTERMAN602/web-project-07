@@ -1,4 +1,5 @@
 <?php
+session_start();
 include("koneksi.php");
 
 // Ambil parameter pencarian, sort, dan filter dari URL (GET)

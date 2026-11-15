@@ -1,3 +1,8 @@
+<?php
+session_start(); // <-- Tambahkan baris ini di paling atas
+include("koneksi.php");
+?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -62,7 +67,7 @@
               <div class="form-grid">
                 <div class="form-group">
                   <label for="kategori">Kategori</label>
-                  <select id="kategori" name="kategori" class="form-control" required style="background-color: #192b26; color: #fff;">
+                  <select id="kategori" name="kategori" class="form-control" required>
                     <option value="" disabled selected>-- Pilih Kategori --</option>
                     <option value="Paracetamol">Paracetamol</option>
                     <option value="Ibuprofen">Ibuprofen</option>
@@ -73,7 +78,7 @@
 
                 <div class="form-group">
                   <label for="tipe">Tipe</label>
-                  <select id="tipe" name="tipe" class="form-control" required style="background-color: #192b26; color: #fff;">
+                  <select id="tipe" name="tipe" class="form-control" required>
                     <option value="" disabled selected>-- Pilih Tipe --</option>
                     <option value="Tablet">Tablet</option>
                     <option value="Kapsul">Kapsul</option>

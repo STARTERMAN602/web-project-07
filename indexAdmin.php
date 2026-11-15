@@ -1,4 +1,5 @@
 <?php
+session_start();
 include("koneksi.php");
 
 // Fitur pencarian obat (opsional, otomatis jalan saat ketik di search bar)

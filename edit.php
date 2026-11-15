@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "koneksi.php";
 $id = isset($_GET["id"]) ? (int) $_GET["id"] : 0;
 
@@ -81,7 +82,7 @@ $imgPath = (!empty($data["Image"]) && file_exists("assets/product-image/" . $dat
               <div class="form-grid">
                 <div class="form-group">
                   <label for="kategori">Kategori</label>
-                  <select id="kategori" name="kategori" class="form-control" required style="background-color: #192b26; color: #fff;">
+                  <select id="kategori" name="kategori" class="form-control" required>
                     <option value="Paracetamol" <?= ($data['Category'] == 'Paracetamol') ? 'selected' : '' ?>>Paracetamol</option>
                     <option value="Ibuprofen" <?= ($data['Category'] == 'Ibuprofen') ? 'selected' : '' ?>>Ibuprofen</option>
                     <option value="Vitamin" <?= ($data['Category'] == 'Vitamin') ? 'selected' : '' ?>>Vitamin</option>
@@ -91,7 +92,7 @@ $imgPath = (!empty($data["Image"]) && file_exists("assets/product-image/" . $dat
 
                 <div class="form-group">
                   <label for="tipe">Tipe</label>
-                  <select id="tipe" name="tipe" class="form-control" required style="background-color: #192b26; color: #fff;">
+                  <select id="tipe" name="tipe" class="form-control" required>
                     <option value="Tablet" <?= ($data['Type'] == 'Tablet') ? 'selected' : '' ?>>Tablet</option>
                     <option value="Kapsul" <?= ($data['Type'] == 'Kapsul') ? 'selected' : '' ?>>Kapsul</option>
                     <option value="Sirup" <?= ($data['Type'] == 'Sirup') ? 'selected' : '' ?>>Sirup</option>
