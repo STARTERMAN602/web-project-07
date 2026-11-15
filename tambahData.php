@@ -21,10 +21,9 @@ if (!empty($_FILES["image"]["name"])) {
 
 $stmt = $connect->prepare("INSERT INTO meds (Name, Category, Type, Price, Stock, Image) VALUES (?, ?, ?, ?, ?, ?)");
 $stmt->bind_param("sssiis", $nama, $kategori, $tipe, $harga, $stok, $imageName);
-$stmt->execute();
 
 try {
-    $stmt->execute();
+    $stmt->execute(); // Cukup dijalankan di dalam try
     header("Location: indexAdmin.php");
     exit;
 } catch (mysqli_sql_exception $e) {

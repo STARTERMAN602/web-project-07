@@ -22,10 +22,9 @@ if (!empty($_FILES["image"]["name"])) {
 
 $stmt = $connect->prepare("UPDATE meds SET Name = ?, Category = ?, Type = ?, Price = ?, Stock = ?, Image = ? WHERE ID = ?");
 $stmt->bind_param("sssiisi", $nama, $kategori, $tipe, $harga, $stok, $imageName, $id);
-$stmt->execute();
 
 try {
-    $stmt->execute();
+    $stmt->execute(); // Cukup dijalankan di dalam try
     header("Location: indexAdmin.php");
     exit;
 } catch (mysqli_sql_exception $e) {
