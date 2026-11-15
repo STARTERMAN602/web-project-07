@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tambah Obat - HealthyCare Admin</title>
   <link rel="stylesheet" href="dashboard.css">
+  <script src="theme.js"></script>
 </head>
 <body>
 
@@ -21,22 +22,25 @@
       <nav class="sidebar-nav">
         <div class="nav-label">Manajemen</div>
         <a href="indexAdmin.php" class="nav-link active">Kelola Data Obat</a>
-        <a href="admin-histori.php" class="nav-link">Histori Pembelian</a>
-
-        <div class="nav-label">Akun</div>
-        <a href="user.php" class="nav-link">Profil Admin</a>
-        <a href="logout.php" class="nav-link logout">Logout</a>
+        <a href="adminHistori.php" class="nav-link">Histori Pembelian</a>
       </nav>
     </aside>
 
     <!-- Konten Utama -->
     <div class="main-content">
       <header class="topbar">
-        <a href="indexAdmin.php" class="btn btn-outline btn-sm">&larr; Kembali ke Daftar Obat</a>
-        <a href="user.php" class="user-pill">
-          <div class="user-avatar-sm">A</div>
-          <span>Admin Apotek</span>
-        </a>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <!-- Tombol Terang / Gelap -->
+          <button type="button" class="theme-btn-top" id="btn-theme" title="Ganti Mode Terang / Gelap">
+            <img src="assets/app-icon/sun.png" id="icon-theme" alt="Mode">
+          </button>
+          <a href="user.php" class="user-pill">
+            <div class="user-avatar-sm">
+              <img src="assets/user-icon/admin.png" alt="Admin">
+            </div>
+            <span><?= htmlspecialchars($_SESSION['username'] ?? 'Admin Apotek') ?></span>
+          </a>
+        </div>
       </header>
 
       <main class="page-body">

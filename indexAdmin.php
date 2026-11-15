@@ -18,6 +18,7 @@ if ($cari !== '') {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kelola Data Obat - HealthyCare Admin</title>
   <link rel="stylesheet" href="dashboard.css">
+  <script src="theme.js"></script>
 </head>
 <body>
 
@@ -35,23 +36,39 @@ if ($cari !== '') {
         <div class="nav-label">Manajemen</div>
         <a href="indexAdmin.php" class="nav-link active">Kelola Data Obat</a>
         <a href="adminHistori.php" class="nav-link">Histori Pembelian</a>
-
-        <div class="nav-label">Akun</div>
-        <a href="user.php" class="nav-link">Profil Admin</a>
-        <a href="logout.php" class="nav-link logout">Logout</a>
       </nav>
     </aside>
 
     <!-- Konten Utama -->
     <div class="main-content">
       <header class="topbar">
-        <form class="search-box" method="GET" action="indexAdmin.php">
-          <input type="text" name="cari" class="search-input" placeholder="Cari nama obat atau kategori..." value="<?= htmlspecialchars($cari) ?>">
+        <form class="search-box" method="GET" action="">
+          <!-- Ikon Kaca Pembesar -->
+          <span class="search-icon-left">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </span>
+
+          <!-- Input Ketik -->
+          <input type="text" name="cari" class="search-input" placeholder="Cari obat atau kategori..." value="<?= htmlspecialchars($cari ?? '') ?>" autocomplete="off">
+
+          <!-- Tombol Hapus (X) -->
+          <button type="button" class="search-clear-btn" title="Hapus pencarian">&times;</button>
         </form>
-        <a href="user.php" class="user-pill">
-          <div class="user-avatar-sm">A</div>
-          <span>Admin Apotek</span>
-        </a>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <!-- Tombol Terang / Gelap -->
+          <button type="button" class="theme-btn-top" id="btn-theme" title="Ganti Mode Terang / Gelap">
+            <img src="assets/app-icon/sun.png" id="icon-theme" alt="Mode">
+          </button>
+          <a href="user.php" class="user-pill">
+            <div class="user-avatar-sm">
+              <img src="assets/user-icon/admin.png" alt="Admin">
+            </div>
+            <span><?= htmlspecialchars($_SESSION['username'] ?? 'Admin Apotek') ?></span>
+          </a>
+        </div>
       </header>
 
       <main class="page-body">
@@ -61,8 +78,18 @@ if ($cari !== '') {
               <h1 class="section-title">Kelola Data Obat</h1>
               <p class="section-subtitle">Tambah, perbarui, dan kelola stok obat HealthyCare.</p>
             </div>
-            <!-- Tetap terhubung ke tambah.php milikmu -->
-            <a href="tambah.php" class="btn btn-emerald">+ Tambah Obat</a>
+            <div style="display: flex; gap: 8px;">
+              <!-- Tombol Export Data Obat -->
+              <a href="export.php?type=obat" class="btn btn-outline">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                  <polyline points="7 10 12 15 17 10"/>
+                  <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+                Export Excel
+              </a>
+              <a href="tambah.php" class="btn btn-emerald">+ Tambah Obat</a>
+            </div>
           </div>
 
           <div class="table-card">
@@ -123,6 +150,32 @@ if ($cari !== '') {
       </main>
     </div>
   </div>
+
+<script>
+    // Logika Otomatis Tombol Hapus (X) di Search Bar
+    document.querySelectorAll('.search-box').forEach(box => {
+      const input = box.querySelector('.search-input');
+      const clearBtn = box.querySelector('.search-clear-btn');
+      if (!input || !clearBtn) return;
+
+      const checkValue = () => {
+        clearBtn.style.display = input.value.trim() !== '' ? 'flex' : 'none';
+      };
+
+      checkValue();
+      input.addEventListener('input', checkValue);
+
+      clearBtn.addEventListener('click', () => {
+        input.value = '';
+        checkValue();
+        input.focus();
+        // Jika halaman sedang menampilkan hasil pencarian, otomatis reset kembali ke semua data
+        if (window.location.search.includes('cari=')) {
+          box.submit();
+        }
+      });
+    });
+  </script>
 
 </body>
 </html>

@@ -5,8 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Akses Ditolak - HealthyCare</title>
   <link rel="stylesheet" href="style.css">
+  <script src="theme.js"></script>
 </head>
 <body>
+  <div style="position: absolute; top: 20px; right: 24px; z-index: 10;">
+    <button type="button" class="theme-btn-top" id="btn-theme" title="Ganti Mode Terang / Gelap" style="width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--border); background: var(--bg-card); display: flex; align-items: center; justify-content: center; cursor: pointer;">
+      <img src="assets/app-icon/sun.png" id="icon-theme" alt="Mode" style="width: 20px; height: 20px; object-fit: contain;">
+    </button>
+  </div>
 
   <main class="auth-wrapper">
     <a href="login.php" class="brand-header">
