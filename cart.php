@@ -86,7 +86,7 @@ if (!empty($_SESSION['cart'])) {
               $bisaTambah = ($item['qty'] < $item['stock']);
             ?>
             <div class="cart-item">
-              <input type="checkbox" class="cart-check" checked disabled title="Otomatis terpilih">
+              <input type="checkbox" name="selected_items[]" value="<?= $item['id'] ?>" class="cart-check item-checkbox" checked>
               <img src="<?= $imgPath ?>" alt="<?= htmlspecialchars($item['name']) ?>" class="cart-thumb">
 
               <div class="cart-info">
@@ -130,8 +130,12 @@ if (!empty($_SESSION['cart'])) {
         <!-- Bar Checkout di Bawah -->
         <div class="cart-summary-bar">
           <div class="cart-summary-inner">
-            <div class="summary-left">
-              <span style="color: var(--text-muted); font-size: 13.5px;">
+            <div class="summary-left" style="display: flex; align-items: center; gap: 16px;">
+              <label style="cursor: pointer; display: flex; align-items: center; gap: 8px;"></label>
+                <input type="checkbox" id="select-all" class="cart-check" checked>
+                <span style="font-size: 14px;">Pilih Semua</span>
+              </label>
+              <span style="color: var(--text-muted); font-size: 13.5px;"></span>
                 Total Item: <strong><?= $totalQty ?> pcs</strong>
               </span>
             </div>
@@ -165,6 +169,19 @@ if (!empty($_SESSION['cart'])) {
       </div>
     <?php endif; ?>
   </div>
+
+<script>
+  const selectAll = document.getElementById('select-all');
+  const itemCheckboxes = document.querySelectorAll('.item-checkbox');
+
+  if (selectAll) {
+    selectAll.addEventListener('change', function() {
+      itemCheckboxes.forEach(cb => {
+        cb.checked = this.checked;
+      });
+    });
+  }
+</script>
 
 </body>
 </html>

@@ -152,11 +152,6 @@ $firstMedId = null;
           <button type="button" onclick="window.print()" class="btn btn-outline" style="color: #334155; border-color: #cbd5e1;">
             <img src="assets/app-icon/printer.png" alt="Print" style="width: 20px; height: 20px; object-fit: contain;">Cetak Nota
           </button>
-          <?php if ($userRole !== 'Admin'): ?>
-            <a href="indexCustomer.php<?= $firstMedId ? '#detail-obat-' . $firstMedId : '' ?>" class="btn btn-emerald">
-              Beli Lagi
-            </a>
-          <?php endif; ?>
         </div>
       </div>
     </div>

@@ -94,6 +94,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
               </div>
             </div>
 
+            <div class="form-options" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; font-size:13px;">
+              <label style="display:flex; align-items:center; gap:8px; cursor:pointer;">
+                <input type="checkbox" name="remember" style="accent-color: var(--accent); width:15px; height:15px;"> Remember me
+              </label>
+              <a href="forgotPassword.php" class="link-accent">Forgot Password?</a>
+            </div>
+
             <button type="submit" class="btn-primary" style="margin-top: 6px;">Sign In</button>
           </form>
         </div>

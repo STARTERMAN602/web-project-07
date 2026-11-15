@@ -24,6 +24,15 @@ $stmt = $connect->prepare("UPDATE meds SET Name = ?, Category = ?, Type = ?, Pri
 $stmt->bind_param("sssiisi", $nama, $kategori, $tipe, $harga, $stok, $imageName, $id);
 $stmt->execute();
 
-header("Location: indexAdmin.php");
-exit;
+try {
+    $stmt->execute();
+    header("Location: indexAdmin.php");
+    exit;
+} catch (mysqli_sql_exception $e) {
+    if ($e->getCode() == 1062) { // Kode error duplicate entry MySQL
+        echo "<script>alert('Gagal: Nama obat tersebut sudah ada di database!'); window.history.back();</script>";
+    } else {
+        echo "Error: " . $e->getMessage();
+    }
+}
 ?>

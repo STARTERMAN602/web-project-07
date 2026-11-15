@@ -105,7 +105,7 @@ include("koneksi.php");
 
               <div style="display: flex; gap: 10px; margin-top: 20px;">
                 <a href="indexAdmin.php" class="btn btn-outline">Batal</a>
-                <button type="submit" class="btn btn-emerald" style="flex: 1;">Tambahkan Obat</button>
+                <button id="btn-tambah" type="submit" class="btn btn-emerald" style="flex: 1;">Tambahkan Obat</button>
               </div>
             </form>
           </div>
@@ -113,6 +113,15 @@ include("koneksi.php");
       </main>
     </div>
   </div>
+
+<script>
+  const form = document.querySelector('form');
+  const btn = document.getElementById('btn-tambah');
+  btn.disabled = true; btn.style.opacity = '0.5'; btn.style.cursor = 'not-allowed';
+  form.addEventListener('input', () => {
+    btn.disabled = false; btn.style.opacity = '1'; btn.style.cursor = 'pointer';
+  });
+</script>
 
 </body>
 </html>

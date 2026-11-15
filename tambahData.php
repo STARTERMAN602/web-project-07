@@ -23,6 +23,15 @@ $stmt = $connect->prepare("INSERT INTO meds (Name, Category, Type, Price, Stock,
 $stmt->bind_param("sssiis", $nama, $kategori, $tipe, $harga, $stok, $imageName);
 $stmt->execute();
 
-header("Location: indexAdmin.php");
-exit;
+try {
+    $stmt->execute();
+    header("Location: indexAdmin.php");
+    exit;
+} catch (mysqli_sql_exception $e) {
+    if ($e->getCode() == 1062) { // Kode error duplicate entry MySQL
+        echo "<script>alert('Gagal: Nama obat tersebut sudah ada di database!'); window.history.back();</script>";
+    } else {
+        echo "Error: " . $e->getMessage();
+    }
+}
 ?>

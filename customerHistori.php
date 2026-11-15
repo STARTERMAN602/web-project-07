@@ -40,11 +40,12 @@ $whereConditions = ["p.customerID = " . (int)$customerID];
 
 if ($cari !== '') {
     $safeCari = mysqli_real_escape_string($connect, $cari);
+    // Hanya ambil transaksi yang detail obatnya mengandung kata kunci pencarian
     $whereConditions[] = "p.purchaseID IN (
-        SELECT pd2.purchaseID 
-        FROM purchasedetail pd2 
-        JOIN meds m2 ON pd2.medID = m2.ID 
-        WHERE m2.Name LIKE '%$safeCari%'
+        SELECT pd_s.purchaseID 
+        FROM purchasedetail pd_s 
+        JOIN meds m_s ON pd_s.medID = m_s.ID 
+        WHERE m_s.Name LIKE '%$safeCari%'
     )";
 }
 $whereSql = "WHERE " . implode(" AND ", $whereConditions);
@@ -220,11 +221,12 @@ $query = mysqli_query($connect, $sql);
                         $itemOrder = ($sortNama === 'za') ? 'DESC' : 'ASC';
 
                         // Ambil daftar obat pada transaksi ini
+                        $subQueryFilter = ($cari !== '') ? "AND m.Name LIKE '%$safeCari%'" : "";
                         $itemsQuery = mysqli_query($connect, "
                             SELECT m.ID, m.Name, m.Image, pd.amount
                             FROM purchasedetail pd
                             JOIN meds m ON pd.medID = m.ID
-                            WHERE pd.purchaseID = $pid
+                            WHERE pd.purchaseID = $pid $subQueryFilter
                             ORDER BY m.Name $itemOrder
                         ");
 

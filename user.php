@@ -178,16 +178,51 @@ $berandaUrl = $isAdmin ? 'indexAdmin.php' : 'indexCustomer.php';
 
         <div class="form-group" style="margin-bottom: 20px;">
           <label style="font-size: 13px; color: var(--text-label); margin-bottom: 6px; display: block;">Password Baru (Opsional)</label>
-          <input type="password" name="password" class="form-control" placeholder="Kosongkan jika tidak ingin ganti">
+          <div class="password-wrapper">
+            <input type="password" name="password" class="form-control" placeholder="Kosongkan jika tidak ingin ganti">
+            <button type="button" class="toggle-password" aria-label="Tampilkan password">
+              <svg class="icon-eye" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+              <svg class="icon-eye-off" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/>
+                <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/>
+                <line x1="1" y1="1" x2="23" y2="23"/>
+              </svg>
+            </button>
+          </div>
         </div>
 
         <div style="display: flex; gap: 10px;">
           <a href="#" class="btn-outline" style="flex: 1; height: 38px;">Batal</a>
-          <button type="submit" class="btn-primary" style="flex: 1; height: 38px;">Simpan</button>
+          <button id="btn-simpan" type="submit" class="btn-primary" style="flex: 1; height: 38px;">Simpan</button>
         </div>
       </form>
     </div>
   </div>
+
+<script>
+    document.querySelectorAll('.toggle-password').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const input  = btn.previousElementSibling;
+        const eye    = btn.querySelector('.icon-eye');
+        const eyeOff = btn.querySelector('.icon-eye-off');
+        const hidden = input.type === 'password';
+
+        input.type           = hidden ? 'text' : 'password';
+        eye.style.display    = hidden ? 'none' : 'block';
+        eyeOff.style.display = hidden ? 'block' : 'none';
+      });
+    });
+
+    const form = document.querySelector('form');
+    const btn = document.getElementById('btn-simpan');
+    btn.disabled = true; btn.style.opacity = '0.5'; btn.style.cursor = 'not-allowed';
+    form.addEventListener('input', () => {
+      btn.disabled = false; btn.style.opacity = '1'; btn.style.cursor = 'pointer';
+    });
+  </script>
 
 </body>
 </html>

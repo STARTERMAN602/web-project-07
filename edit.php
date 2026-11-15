@@ -123,7 +123,7 @@ $imgPath = (!empty($data["Image"]) && file_exists("assets/product-image/" . $dat
 
               <div style="display: flex; gap: 10px; margin-top: 20px;">
                 <a href="indexAdmin.php" class="btn btn-outline">Batal</a>
-                <button type="submit" class="btn btn-emerald" style="flex: 1;">Simpan Perubahan</button>
+                <button id="btn-simpan" type="submit" class="btn btn-emerald" style="flex: 1;">Simpan Perubahan</button>
               </div>
             </form>
           </div>
@@ -131,6 +131,15 @@ $imgPath = (!empty($data["Image"]) && file_exists("assets/product-image/" . $dat
       </main>
     </div>
   </div>
+
+<script>
+  const form = document.querySelector('form');
+  const btn = document.getElementById('btn-simpan');
+  btn.disabled = true; btn.style.opacity = '0.5'; btn.style.cursor = 'not-allowed';
+  form.addEventListener('input', () => {
+    btn.disabled = false; btn.style.opacity = '1'; btn.style.cursor = 'pointer';
+  });
+</script>
 
 </body>
 </html>
