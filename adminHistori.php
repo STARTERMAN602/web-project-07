@@ -10,6 +10,7 @@ $filterHarga = $_GET['filter_harga'] ?? '';
 
 // Kondisi pencarian (nama pembeli atau nama obat)
 $whereClause = "";
+$safeCari = "";
 if ($cari !== '') {
     $safeCari = mysqli_real_escape_string($connect, $cari);
     $whereClause = "WHERE p.purchaseID IN (
@@ -194,11 +195,14 @@ $query = mysqli_query($connect, $sql);
                       <?php
                         $pid = (int) $purchase['purchaseID'];
                         $itemOrder = ($sortNama === 'za') ? 'DESC' : 'ASC';
+                        
+                        // Filter sub-item agar hanya obat yang dicari saja yang tampil di baris ini
+                        $subQueryFilter = ($cari !== '') ? "AND m.Name LIKE '%$safeCari%'" : "";
                         $itemsQuery = mysqli_query($connect, "
                             SELECT m.Name, m.Image, pd.amount
                             FROM purchasedetail pd
                             JOIN meds m ON pd.medID = m.ID
-                            WHERE pd.purchaseID = $pid
+                            WHERE pd.purchaseID = $pid $subQueryFilter
                             ORDER BY m.Name $itemOrder
                         ");
                       ?>
