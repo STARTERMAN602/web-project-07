@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.3
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 09, 2026 at 03:34 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Host: 127.0.0.1:3306
+-- Generation Time: Nov 15, 2026 at 08:08 AM
+-- Server version: 10.4.34-MariaDB
+-- PHP Version: 8.5.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -47,15 +47,16 @@ CREATE TABLE `meds` (
   `Category` enum('Paracetamol','Ibuprofen','Vitamin','Obat Maag') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `Type` enum('Tablet','Kapsul','Sirup','') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `Price` int(11) NOT NULL,
-  `Stock` int(11) NOT NULL
+  `Stock` int(11) NOT NULL,
+  `Image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `meds`
 --
 
-INSERT INTO `meds` (`ID`, `Name`, `Category`, `Type`, `Price`, `Stock`) VALUES
-(3, 'Promag', 'Obat Maag', 'Tablet', 5000, 2);
+INSERT INTO `meds` (`ID`, `Name`, `Category`, `Type`, `Price`, `Stock`, `Image`) VALUES
+(3, 'Promag', 'Obat Maag', 'Tablet', 5000, 2, NULL);
 
 -- --------------------------------------------------------
 
