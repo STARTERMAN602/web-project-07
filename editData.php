@@ -1,12 +1,37 @@
 <?php
 include("koneksi.php");
-$id = $_POST["id"];
-$nama = $_POST["nama"];
+
+$id       = (int) $_POST["id"];
+$nama     = $_POST["nama"];
 $kategori = $_POST["kategori"];
-$tipe = $_POST["tipe"];
-$stok = $_POST["stok"];
-$harga = $_POST["harga"];
+$tipe     = $_POST["tipe"];
+$stok     = (int) $_POST["stok"];
+$harga    = (int) $_POST["harga"];
+$imageName = !empty($_POST["old_image"]) ? $_POST["old_image"] : null;
 
-$query = mysqli_query($connect, "update meds set Name = '$nama', Category = '$kategori', Type = '$tipe', Stock = $stok, Price = $harga where ID = $id");
+// Jika admin upload gambar baru
+if (!empty($_FILES["image"]["name"])) {
+    $ext = strtolower(pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION));
+    $allowed = ["jpg", "jpeg", "png", "webp"];
 
-header("Location: indexAdmin.php");
+    if (in_array($ext, $allowed)) {
+        $imageName = time() . "_" . uniqid() . "." . $ext;
+        move_uploaded_file($_FILES["image"]["tmp_name"], "assets/product-image/" . $imageName);
+    }
+}
+
+$stmt = $connect->prepare("UPDATE meds SET Name = ?, Category = ?, Type = ?, Price = ?, Stock = ?, Image = ? WHERE ID = ?");
+$stmt->bind_param("sssiisi", $nama, $kategori, $tipe, $harga, $stok, $imageName, $id);
+
+try {
+    $stmt->execute(); // Cukup dijalankan di dalam try
+    header("Location: indexAdmin.php");
+    exit;
+} catch (mysqli_sql_exception $e) {
+    if ($e->getCode() == 1062) { // Kode error duplicate entry MySQL
+        echo "<script>alert('Gagal: Nama obat tersebut sudah ada di database!'); window.history.back();</script>";
+    } else {
+        echo "Error: " . $e->getMessage();
+    }
+}
+?>

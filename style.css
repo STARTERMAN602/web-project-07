@@ -1,16 +1,30 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+/* === TEMA GELAP (DEFAULT) === */
 :root {
-  --bg-page: #121213;
-  --bg-card: #27292e;
-  --bg-footer: #32353b;
-  --bg-input: #3d4048;
-  --bg-input-focus: #454952;
-  --accent: #ff6740;
-  --accent-hover: #e8552e;
+  --bg-page: #0a1412;
+  --bg-card: rgba(16, 28, 25, 0.78);
+  --bg-footer: rgba(24, 42, 37, 0.72);
+  --bg-input: rgba(45, 68, 62, 0.65);
+  --bg-input-focus: rgba(45, 68, 62, 0.9);
+  --accent: #059669;
+  --accent-hover: #047857;
   --text-main: #ffffff;
-  --text-label: #e4e4e7;
-  --text-muted: #a1a1aa;
+  --text-label: #e2e8f0;
+  --text-muted: #94a3b8;
+}
+
+/* === TEMA TERANG (LIGHT MODE) === */
+body.light-mode,
+html.light-mode {
+  --bg-page: #e2e8f0;
+  --bg-card: #ffffff;
+  --bg-footer: #f8fafc;
+  --bg-input: #ffffff;
+  --bg-input-focus: #ffffff;
+  --text-main: #0f172a;
+  --text-label: #1e293b;
+  --text-muted: #64748b;
 }
 
 * {
@@ -19,9 +33,12 @@
   padding: 0;
 }
 
-body {
-  font-family: 'Inter', 'Segoe UI', sans-serif;
+html {
   background-color: var(--bg-page);
+}
+
+body {
+  font-family: 'Nunito Sans', 'Segoe UI', sans-serif;
   color: var(--text-main);
   min-height: 100vh;
   display: flex;
@@ -31,6 +48,28 @@ body {
   overflow-x: hidden;
 }
 
+/* Background Foto Apotek di Mode Gelap */
+body::before {
+  content: "";
+  position: fixed;
+  inset: -20px;
+  z-index: 0;
+  background-image:
+    linear-gradient(rgba(8, 20, 17, 0.78), rgba(8, 20, 17, 0.85)),
+    url('assets/background/appBg.jpg');
+  background-size: cover;
+  background-position: center;
+  filter: blur(8px);
+}
+
+/* Background Foto Apotek di Mode Terang (Teduh & Tidak Menyilaukan) */
+body.light-mode::before {
+  background-image:
+    linear-gradient(rgba(226, 232, 240, 0.78), rgba(203, 213, 225, 0.86)),
+    url('assets/background/appBg.jpg');
+  filter: blur(10px);
+}
+
 .auth-wrapper {
   width: 100%;
   max-width: 460px;
@@ -38,6 +77,7 @@ body {
   flex-direction: column;
   align-items: center;
   position: relative;
+  z-index: 1;
 }
 
 /* Header Logo */
@@ -45,7 +85,7 @@ body {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 32px;
+  margin-bottom: 28px;
   text-decoration: none;
   color: var(--text-main);
   z-index: 2;
@@ -60,22 +100,28 @@ body {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  /* Ganti atau tambahkan logo gambar jika perlu */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.brand-logo img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  display: block;
 }
 
 .brand-title {
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
   font-size: 24px;
   font-weight: 700;
   letter-spacing: -0.3px;
 }
 
-/* Container Card + Karakter Background */
 .card-area {
   width: 100%;
   position: relative;
 }
 
-/* Gambar Karakter di Sisi Kiri (Opsional) */
 .bg-illustration {
   position: absolute;
   right: calc(100% - 45px);
@@ -83,7 +129,6 @@ body {
   transform: translateY(-50%);
   width: 380px;
   height: 480px;
-  /* Ganti 'character.png' dengan gambar ilustrasi PNG transparan milikmu */
   background-image: url('character.png');
   background-size: contain;
   background-repeat: no-repeat;
@@ -92,24 +137,35 @@ body {
   z-index: 0;
 }
 
-/* Card Utama */
+/* Kartu Utama di Mode Gelap */
 .auth-card {
   position: relative;
   z-index: 1;
   background-color: var(--bg-card);
-  border-top: 3px solid var(--accent);
-  border-radius: 3px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 4px solid var(--accent);
+  border-radius: 8px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.55);
   overflow: hidden;
 }
 
+/* Kartu Utama di Mode Terang (Tegas Berdimensi) */
+body.light-mode .auth-card {
+  background-color: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  border-top: 4px solid var(--accent);
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.12), 0 4px 12px rgba(15, 23, 42, 0.05);
+}
+
 .card-body {
-  padding: 32px 36px 28px;
+  padding: 32px 34px 28px;
 }
 
 .required-note {
   text-align: right;
-  font-size: 11px;
+  font-size: 11.5px;
   color: var(--text-muted);
   margin-bottom: 8px;
 }
@@ -120,10 +176,11 @@ body {
 }
 
 .card-title {
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
   text-align: center;
   font-size: 20px;
   font-weight: 600;
-  margin-bottom: 26px;
+  margin-bottom: 24px;
   color: var(--text-main);
 }
 
@@ -140,18 +197,23 @@ body {
   margin-bottom: 7px;
 }
 
+body.light-mode .form-group label {
+  font-weight: 600;
+  color: #1e293b;
+}
+
 .form-control {
   width: 100%;
-  height: 40px;
-  padding: 0 12px;
+  height: 42px;
+  padding: 0 14px;
   background-color: var(--bg-input);
   border: 1px solid transparent;
-  border-radius: 4px;
+  border-radius: 6px;
   color: var(--text-main);
   font-size: 14px;
   font-family: inherit;
   outline: none;
-  transition: background-color 0.2s, border-color 0.2s;
+  transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
 }
 
 .form-control:focus {
@@ -159,9 +221,84 @@ body {
   border-color: var(--accent);
 }
 
+/* Input Form di Mode Terang (Garis Tegas & Tidak Tenggelam) */
+body.light-mode .form-control {
+  background-color: #ffffff !important;
+  border: 1.5px solid #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+body.light-mode .form-control:focus {
+  border-color: #059669 !important;
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.15) !important;
+}
+
+select.form-control {
+  cursor: pointer;
+}
+
+select.form-control option {
+  background-color: #16221f;
+  color: #ffffff;
+}
+
+body.light-mode select.form-control option {
+  background-color: #ffffff;
+  color: #0f172a;
+}
+
+/* Kolom Password & Ikon Mata */
+.password-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.password-wrapper .form-control {
+  padding-right: 44px;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #94a3b8;
+  outline: none;
+  z-index: 2;
+  transition: color 0.2s;
+}
+
+.toggle-password:hover {
+  color: #34d399;
+}
+
+body.light-mode .toggle-password {
+  color: #64748b;
+}
+
+body.light-mode .toggle-password:hover {
+  color: #059669;
+}
+
+.toggle-password svg {
+  display: block;
+}
+
+input[type="password"]::-ms-reveal {
+  display: none;
+}
+
 /* Links */
 .link-accent {
-  color: var(--accent);
+  color: #34d399;
   text-decoration: none;
   font-size: 13px;
   transition: opacity 0.2s;
@@ -172,14 +309,19 @@ body {
   opacity: 0.9;
 }
 
-/* Button */
+body.light-mode .link-accent {
+  color: #059669;
+  font-weight: 600;
+}
+
+/* Tombol Utama */
 .btn-primary {
   width: 100%;
-  height: 40px;
+  height: 42px;
   background-color: var(--accent);
   color: #ffffff;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   font-size: 14px;
   font-weight: 600;
   font-family: inherit;
@@ -191,35 +333,304 @@ body {
   background-color: var(--accent-hover);
 }
 
-/* Card Footer (Khusus Login Page) */
+/* Footer Card */
 .card-footer {
   background-color: var(--bg-footer);
-  padding: 18px 36px;
+  padding: 16px 34px;
   text-align: center;
   font-size: 13.5px;
   color: var(--text-label);
 }
 
+body.light-mode .card-footer {
+  background-color: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+  color: #475569;
+}
+
 .card-footer a {
   margin-left: 6px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .back-link-wrap {
   margin-bottom: 16px;
 }
 
-/* Responsif untuk layar HP */
+/* Tombol Tambahan */
+a.btn-primary,
+a.btn-outline,
+a.btn-danger-outline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.btn-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btn-outline {
+  width: 100%;
+  height: 40px;
+  background-color: transparent;
+  color: var(--text-main);
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-outline:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+body.light-mode .btn-outline {
+  border-color: #cbd5e1;
+  color: #1e293b;
+}
+
+body.light-mode .btn-outline:hover {
+  background-color: #f1f5f9;
+  border-color: #94a3b8;
+}
+
+.btn-danger-outline {
+  width: 100%;
+  height: 40px;
+  background-color: rgba(244, 63, 94, 0.1);
+  color: #fda4af;
+  border: 1.5px solid rgba(244, 63, 94, 0.35);
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-danger-outline:hover {
+  background-color: rgba(244, 63, 94, 0.22);
+  color: #ffffff;
+}
+
+body.light-mode .btn-danger-outline {
+  background-color: #fee2e2;
+  color: #b91c1c;
+  border-color: #fca5a5;
+}
+
+body.light-mode .btn-danger-outline:hover {
+  background-color: #fecaca;
+  color: #991b1b;
+}
+
+.auth-card.card-danger {
+  border-top: 4px solid #f43f5e;
+}
+
+.status-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 18px;
+}
+
+.status-icon.success {
+  background-color: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(52, 211, 153, 0.35);
+  color: #34d399;
+}
+
+.status-icon.danger {
+  background-color: rgba(244, 63, 94, 0.15);
+  border: 1px solid rgba(251, 113, 133, 0.35);
+  color: #fb7185;
+}
+
+.card-desc {
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-label);
+  margin-top: -12px;
+  margin-bottom: 26px;
+}
+
+/* Profil Akun (user.php) */
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 22px;
+}
+
+.profile-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #059669, #14b8a6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 14px rgba(5, 150, 105, 0.35);
+}
+
+.profile-avatar img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  display: block;
+  filter: brightness(0) invert(1);
+}
+
+.profile-name {
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 6px;
+}
+
+.role-badge {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background-color: rgba(16, 185, 129, 0.18);
+  color: #34d399;
+  border: 1px solid rgba(52, 211, 153, 0.3);
+}
+
+body.light-mode .role-badge {
+  background-color: #d1fae5;
+  color: #065f46;
+  border-color: #a7f3d0;
+}
+
+.profile-info {
+  background-color: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 6px 16px;
+  margin-bottom: 24px;
+}
+
+body.light-mode .profile-info {
+  background-color: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  font-size: 13.5px;
+}
+
+body.light-mode .info-row {
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.info-label {
+  color: var(--text-muted);
+}
+
+.info-value {
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+/* Modal Edit Akun */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 999;
+}
+
+.modal-overlay:target {
+  display: flex;
+}
+
+.modal-box {
+  width: 100%;
+  max-width: 440px;
+  background-color: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 4px solid var(--accent);
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+  position: relative;
+}
+
+body.light-mode .modal-box {
+  background-color: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  border-top: 4px solid var(--accent);
+  color: #0f172a;
+  box-shadow: 0 24px 50px rgba(15, 23, 42, 0.18);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.modal-close {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background-color: rgba(255, 255, 255, 0.08);
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  text-decoration: none;
+  line-height: 1;
+  transition: 0.2s;
+}
+
+.modal-close:hover {
+  background-color: rgba(244, 63, 94, 0.2);
+  color: #ffffff;
+}
+
+body.light-mode .modal-close {
+  background-color: #f1f5f9;
+  color: #475569;
+}
+
 @media (max-width: 768px) {
-  .bg-illustration {
-    display: none;
-  }
-
-  .card-body {
-    padding: 26px 22px;
-  }
-
-  .card-footer {
-    padding: 16px 22px;
-  }
+  .bg-illustration { display: none; }
+  .card-body { padding: 26px 20px; }
+  .card-footer { padding: 16px 20px; }
 }
