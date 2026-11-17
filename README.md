@@ -44,5 +44,5 @@
 5. Sesuaikan konfigurasi database jika diperlukan pada file `koneksi.php`.
 6. Buka browser dan akses:
    ```text
-   http://localhost/web-project-07/
+   http://localhost/web-project-07/login.php
    ```
